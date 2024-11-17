@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "firebase-tiffanyandkelvin"
-  }
+    "default": "sophiaandrichard",
+    "sophiaandrichard": "sophiaandrichard-a0b61"
+  },
+  "targets": {},
+  "etags": {}
 }

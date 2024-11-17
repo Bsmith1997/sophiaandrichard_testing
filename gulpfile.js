@@ -1,75 +1,75 @@
-/**
- * Created by Kelvin on 8/4/2016.
- */
-var gulp = require('gulp');
-var del = require('del');
-var merge = require('merge-stream');
-var runSequence = require('run-sequence');
-var minifyCss = require('gulp-minify-css');
-var uglify = require('gulp-uglify');
-var ngAnnotate = require('gulp-ng-annotate');
-var gulpif = require('gulp-if');
-var revReplace = require('gulp-rev-replace');
-var useref = require('gulp-useref');
-var rev = require('gulp-rev');
-var htmlmin = require('gulp-htmlmin');
+const gulp = require('gulp');
+const del = require('del');
+const merge = require('merge-stream');
+const minifyCss = require('gulp-minify-css');
+const uglify = require('gulp-uglify');
+const ngAnnotate = require('gulp-ng-annotate');
+const gulpif = require('gulp-if');
+const revReplace = require('gulp-rev-replace');
+const useref = require('gulp-useref');
+const rev = require('gulp-rev');
+const htmlmin = require('gulp-htmlmin');
 
-// delete everything in the www folder
-gulp.task('clean-dist', function () {
-    return del([
-        'dist/**/*'
-    ]);
-});
+// delete everything in the dist folder
+function cleanDist() {
+    return del(['dist/**/*']);
+}
 
-// copy over images, fonts and 3rd party css html
-gulp.task('copy-files', function() {
-    var imgs = gulp.src('app/images/**/*')
+// copy over images, fonts, and other static files
+function copyFiles() {
+    const imgs = gulp.src('app/images/**/*')
         .pipe(gulp.dest('dist/images'));
 
-    // copy over css files
-    var cssFiles = ['app/css/swipebox.css', 'app/css/style-v2.css', 'app/css/style-responsive-v2.css'];
-
-    var css = gulp.src(cssFiles)
+    // copy and minify css files
+    const cssFiles = ['app/css/swipebox.css', 'app/css/style-v2.css', 'app/css/style-responsive-v2.css'];
+    const css = gulp.src(cssFiles)
         .pipe(minifyCss())
         .pipe(gulp.dest('dist/css'));
 
-    var preMinifiedCss = gulp.src('app/css/animate.min.css')
+    const preMinifiedCss = gulp.src('app/css/animate.min.css')
         .pipe(gulp.dest('dist/css'));
 
-    var fonts = gulp.src('app/fonts/**/*')
+    const fonts = gulp.src('app/fonts/**/*')
         .pipe(gulp.dest('dist/fonts'));
 
-    // copy over urip js files
-    var minifiedJSArray = ['app/js/minified/SmoothScroll.min.js', 'app/js/minified/classie.min.js',
-        'app/js/minified/jquery.nav.min.js', 'app/js/minified/jquery.swipebox.min.js', 'app/js/minified/expandableGallery.min.js',
-        'app/js/minified/jquery.counterup.min.js', 'app/js/minified/jquery-css-transform.min.js',
-        'app/js/minified/jquery-animate-css-rotate-scale.min.js', 'app/js/minified/jquery.quicksand.min.js',
-        'app/js/minified/headhesive.min.js', 'app/js/minified/scrollReveal.min.js',
-        'app/js/minified/jquery.countdown.min.js'];
-
-    var preMinifiedJS = gulp.src(minifiedJSArray)
+    // copy over minified JS files
+    const minifiedJSArray = [
+        'app/js/minified/SmoothScroll.min.js', 
+        'app/js/minified/classie.min.js',
+        'app/js/minified/jquery.nav.min.js', 
+        'app/js/minified/jquery.swipebox.min.js', 
+        'app/js/minified/expandableGallery.min.js', 
+        'app/js/minified/jquery.counterup.min.js',
+        'app/js/minified/jquery-css-transform.min.js', 
+        'app/js/minified/jquery-animate-css-rotate-scale.min.js',
+        'app/js/minified/jquery.quicksand.min.js', 
+        'app/js/minified/headhesive.min.js',
+        'app/js/minified/scrollReveal.min.js', 
+        'app/js/minified/jquery.countdown.min.js'
+    ];
+    
+    const preMinifiedJS = gulp.src(minifiedJSArray)
         .pipe(gulp.dest('dist/js/minified'));
 
-    var jsFiles = gulp.src(['app/js/modernizr.js', 'app/js/v2.js', 'app/js/jquery.stellar.js'])
+    const jsFiles = gulp.src(['app/js/modernizr.js', 'app/js/v2.js', 'app/js/jquery.stellar.js'])
         .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
 
-    var uiBootstrap = gulp.src('app/js/ui-bootstrap/ui-bootstrap-custom-tpls-2.0.1.tak.js')
+    const uiBootstrap = gulp.src('app/js/ui-bootstrap/ui-bootstrap-custom-tpls-2.0.1.tak.js')
         .pipe(uglify())
         .pipe(gulp.dest('dist/js/ui-bootstrap'));
 
-    var templates = gulp.src('app/app/**/*.html')
-        .pipe(htmlmin({removeComments: true, collapseWhitespace: true, conservativeCollapse: true}))
+    const templates = gulp.src('app/app/**/*.html')
+        .pipe(htmlmin({ removeComments: true, collapseWhitespace: true, conservativeCollapse: true }))
         .pipe(gulp.dest('dist/app'));
 
-    return merge(imgs, css, preMinifiedCss,preMinifiedJS, uiBootstrap, jsFiles,templates, fonts);
-});
+    return merge(imgs, css, preMinifiedCss, preMinifiedJS, uiBootstrap, jsFiles, templates, fonts);
+}
 
-
-gulp.task('build-html', function () {
-
-    var condition = function(file) {
-        var filesToRev = {
+// build the HTML
+function buildHtml() {
+    const condition = function (file) {
+        const filesToRev = {
             'vendor.css': true,
             'app.js': true,
             'vendor.js': true,
@@ -78,32 +78,33 @@ gulp.task('build-html', function () {
         return filesToRev[file.basename];
     };
 
-    // concatenate, annotate, minify our vendor js files
-    // concatenate, annotate, minify our js files
-    return gulp.src("app/index.html")
-        .pipe(useref())      // Concatenate with gulp-useref
-        .pipe(gulpif('app/*.js',ngAnnotate()))
-        .pipe(gulpif('app/*.js',uglify()))
+    return gulp.src('app/index.html')
+        .pipe(useref()) // Concatenate with gulp-useref
+        .pipe(gulpif('app/*.js', ngAnnotate()))
+        .pipe(gulpif('app/*.js', uglify()))
         .pipe(gulpif('css/*.css', minifyCss())) // Minify vendor CSS sources
-        .pipe(gulpif(condition, rev()))                // Rename the concatenated files
-        .pipe(revReplace())         // Substitute in new filenames
-        //.pipe(htmlmin({removeComments: true}))
+        .pipe(gulpif(condition, rev())) // Rename the concatenated files
+        .pipe(revReplace()) // Substitute in new filenames
         .pipe(gulp.dest('dist'));
-});
+}
 
-
-
-gulp.task('minify-index-html', function() {
+// minify index HTML
+function minifyIndexHtml() {
     return gulp.src('dist/index.html')
-        .pipe(htmlmin({removeComments: true}))
+        .pipe(htmlmin({ removeComments: true }))
         .pipe(gulp.dest('dist'));
-});
+}
 
+// register tasks
+gulp.task('clean-dist', cleanDist);
+gulp.task('copy-files', copyFiles);
+gulp.task('build-html', buildHtml);
+gulp.task('minify-index-html', minifyIndexHtml);
 
-
-gulp.task('build', function(callback) {
-    runSequence('clean-dist',
-        ['copy-files'],
-        'build-html', 'minify-index-html',
-        callback);
-});
+// define build task using series and parallel
+gulp.task('build', gulp.series(
+    'clean-dist',
+    gulp.parallel('copy-files'),
+    'build-html',
+    'minify-index-html'
+));

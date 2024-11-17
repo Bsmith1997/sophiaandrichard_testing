@@ -7,11 +7,10 @@
     "deploy": "gulp build && firebase deploy"
   },
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
     "concurrently": "^2.0.0",
     "del": "^2.2.1",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-concat": "^2.6.0",
     "gulp-htmlmin": "^2.0.0",
     "gulp-if": "^2.0.1",

@@ -18,7 +18,7 @@
         function getData(code) {
             var self = this;
             return $q(function(resolve, reject) {
-                var ref = FirebaseFactory.database.ref('codes/' + code);
+                var ref = FirebaseFactory.database.ref('rsvps/' + code);
                 ref.on('value', function(snapshot) {
                     self.data = snapshot.val();
                     if(self.data) {
