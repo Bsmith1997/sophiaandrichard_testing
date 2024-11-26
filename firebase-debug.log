@@ -1,0 +1,45 @@
+[debug] [2024-11-26T04:28:18.490Z] ----------------------------------------------------------------------
+[debug] [2024-11-26T04:28:18.495Z] Command:       /opt/homebrew/Cellar/node/18.8.0/bin/node /opt/homebrew/bin/firebase serve
+[debug] [2024-11-26T04:28:18.495Z] CLI Version:   13.25.0
+[debug] [2024-11-26T04:28:18.495Z] Platform:      darwin
+[debug] [2024-11-26T04:28:18.496Z] Node Version:  v18.8.0
+[debug] [2024-11-26T04:28:18.500Z] Time:          Mon Nov 25 2024 23:28:18 GMT-0500 (Eastern Standard Time)
+[debug] [2024-11-26T04:28:18.500Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-11-26T04:28:18.685Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-11-26T04:28:18.686Z] > authorizing via signed-in user (bubbles.smith.1997@gmail.com)
+[debug] [2024-11-26T04:28:18.687Z] [iam] checking project sophiaandrichard-a0b61 for permissions ["firebase.projects.get"]
+[debug] [2024-11-26T04:28:18.688Z] Checked if tokens are valid: true, expires at: 1732598729407
+[debug] [2024-11-26T04:28:18.689Z] Checked if tokens are valid: true, expires at: 1732598729407
+[debug] [2024-11-26T04:28:18.692Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/sophiaandrichard-a0b61:testIamPermissions [none]
+[debug] [2024-11-26T04:28:18.692Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/sophiaandrichard-a0b61:testIamPermissions x-goog-quota-user=projects/sophiaandrichard-a0b61
+[debug] [2024-11-26T04:28:18.694Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/sophiaandrichard-a0b61:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2024-11-26T04:28:18.851Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/sophiaandrichard-a0b61:testIamPermissions 200
+[debug] [2024-11-26T04:28:18.851Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/sophiaandrichard-a0b61:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2024-11-26T04:28:18.851Z] Checked if tokens are valid: true, expires at: 1732598729407
+[debug] [2024-11-26T04:28:18.851Z] Checked if tokens are valid: true, expires at: 1732598729407
+[debug] [2024-11-26T04:28:18.852Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/sophiaandrichard-a0b61 [none]
+[debug] [2024-11-26T04:28:19.089Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/sophiaandrichard-a0b61 200
+[debug] [2024-11-26T04:28:19.089Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/sophiaandrichard-a0b61 {"projectId":"sophiaandrichard-a0b61","projectNumber":"815803313154","displayName":"sophiaandrichard","name":"projects/sophiaandrichard-a0b61","resources":{"hostingSite":"sophiaandrichard-a0b61","realtimeDatabaseInstance":"sophiaandrichard-a0b61-default-rtdb"},"state":"ACTIVE","etag":"1_a839ec4a-6660-4617-b460-676b3bf2dc50"}
+[info] 
+[info] === Serving from '/Users/babettesmith/Desktop/git/sophiaandrichard_testing'...
+[info] 
+[debug] [2024-11-26T04:28:19.094Z] Checked if tokens are valid: true, expires at: 1732598729407
+[debug] [2024-11-26T04:28:19.094Z] Checked if tokens are valid: true, expires at: 1732598729407
+[debug] [2024-11-26T04:28:19.095Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/sophiaandrichard-a0b61/sites 
+[debug] [2024-11-26T04:28:19.751Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/sophiaandrichard-a0b61/sites 200
+[debug] [2024-11-26T04:28:19.751Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/sophiaandrichard-a0b61/sites {"sites":[{"name":"projects/sophiaandrichard-a0b61/sites/sophiaandrichard-a0b61","defaultUrl":"https://sophiaandrichard-a0b61.web.app","appId":"1:815803313154:web:687ed90eb570b8b210cb1b","type":"DEFAULT_SITE"}]}
+[debug] [2024-11-26T04:28:19.751Z] Checked if tokens are valid: true, expires at: 1732598729407
+[debug] [2024-11-26T04:28:19.751Z] Checked if tokens are valid: true, expires at: 1732598729407
+[debug] [2024-11-26T04:28:19.751Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/sophiaandrichard-a0b61/webApps/1:815803313154:web:687ed90eb570b8b210cb1b/config [none]
+[debug] [2024-11-26T04:28:20.146Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/sophiaandrichard-a0b61/webApps/1:815803313154:web:687ed90eb570b8b210cb1b/config 200
+[debug] [2024-11-26T04:28:20.146Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/sophiaandrichard-a0b61/webApps/1:815803313154:web:687ed90eb570b8b210cb1b/config {"projectId":"sophiaandrichard-a0b61","appId":"1:815803313154:web:687ed90eb570b8b210cb1b","databaseURL":"https://sophiaandrichard-a0b61-default-rtdb.firebaseio.com","storageBucket":"sophiaandrichard-a0b61.firebasestorage.app","apiKey":"AIzaSyATAW8yDRRXOduw8rHDNkSiXFTbHi9TYGY","authDomain":"sophiaandrichard-a0b61.firebaseapp.com","messagingSenderId":"815803313154","measurementId":"G-VCWR5LZ0F8"}
+[debug] [2024-11-26T04:28:20.153Z] Checked if tokens are valid: true, expires at: 1732598729407
+[debug] [2024-11-26T04:28:20.153Z] Checked if tokens are valid: true, expires at: 1732598729407
+[debug] [2024-11-26T04:28:20.153Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/sophiaandrichard-a0b61 [none]
+[debug] [2024-11-26T04:28:20.435Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/sophiaandrichard-a0b61 200
+[debug] [2024-11-26T04:28:20.435Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/sophiaandrichard-a0b61 {"projectId":"sophiaandrichard-a0b61","projectNumber":"815803313154","displayName":"sophiaandrichard","name":"projects/sophiaandrichard-a0b61","resources":{"hostingSite":"sophiaandrichard-a0b61","realtimeDatabaseInstance":"sophiaandrichard-a0b61-default-rtdb"},"state":"ACTIVE","etag":"1_a839ec4a-6660-4617-b460-676b3bf2dc50"}
+[info] i  hosting[sophiaandrichard-a0b61]: Serving hosting files from: dist {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mdist\u001b[22m"}}
+[info] ✔  hosting[sophiaandrichard-a0b61]: Local server: http://localhost:5003 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5003\u001b[22m\u001b[24m"}}
+[info] i  hosting: ::1 - - [26/Nov/2024:04:28:23 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [26/Nov/2024:04:28:23 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\""}}
+[info] i  hosting: ::1 - - [26/Nov/2024:04:28:24 +0000] "GET /app/landing/landing.html HTTP/1.1" 200 - "http://localhost:5003/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [26/Nov/2024:04:28:24 +0000] \"GET /app/landing/landing.html HTTP/1.1\" 200 - \"http://localhost:5003/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\""}}

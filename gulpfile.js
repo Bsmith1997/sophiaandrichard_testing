@@ -51,7 +51,7 @@ function copyFiles() {
     const preMinifiedJS = gulp.src(minifiedJSArray)
         .pipe(gulp.dest('dist/js/minified'));
 
-    const jsFiles = gulp.src(['app/js/modernizr.js', 'app/js/v2.js', 'app/js/jquery.stellar.js'])
+    const jsFiles = gulp.src(['app/js/modernizr.js', 'app/js/v2.js', 'app/js/jquery.stellar.js', 'app/js/scripts.js'])
         .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
 
