@@ -28,7 +28,7 @@
                 <li><a href="#pricing" data-toggle="collapse" data-target="#navbar">Visitor Info</a></li>
                 <li><a href="#schedule" data-toggle="collapse" data-target="#navbar">Schedule</a></li>
                 <li><a href="#customer-story" data-toggle="collapse" data-target="#navbar">Gallery</a></li>
-                <li><a href="#rsvp-form" data-toggle="collapse" data-target="#navbar">RSVP</a></li>
+                <li><a href="#rsvp-form-section" data-toggle="collapse" data-target="#navbar">RSVP</a></li>
             </ul> <!--/ .navbar-nav -->
 
         </div>
@@ -83,7 +83,7 @@
                                 </div> <!--/ .event-hero-info -->
 
                                 <div data-sr="enter right over 1s and move 50px wait 0.1s">
-                                    <a class="scroll-to cta cta-default all-caps external" rel="vimeo" href="#rsvp-form">RSVP</a>
+                                    <a class="scroll-to cta cta-default all-caps external" rel="vimeo" href="#rsvp-form-section">RSVP</a>
                                 </div>
 
                             </div>
@@ -500,7 +500,7 @@
 
                         <div class="col-lg-12 centered">
 
-                            <h4>Tiffany and Kelvin are getting married in:</h4>
+                            <h4>Sophia and Richard are getting married in:</h4>
 
                             <ul class="countdown-timer center"></ul> <!-- This will display countdown timer -->
 
@@ -1138,7 +1138,7 @@
 
     </section>
 
-    <section id="rsvp-form" class="gray-bg centered">
+    <section id="rsvp-form-section" class="gray-bg centered">
             <div class="container" style="background-color: #515459;">
                 <div class="row">
                     <div class="contact-content col-lg-10 col-lg-offset-1 centered">
@@ -1146,7 +1146,7 @@
                         <p>Please respond by the given date.</p>
                         <!-- BEGIN RSVP Form -->
                         <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
-                            <form class="contact-form" id="rsvp-form" action="" method="POST">
+                            <form class="contact-form" id="rsvp-form">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 tak-input-div">
                                         <div class="required-field">
@@ -1179,6 +1179,9 @@
                                             <input class="contact-input" type="number" name="invite_code" id="invite_code" min="0" placeholder="Invite code" required>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12" id="alert-wrapper"></div>
                                 </div>
                                 <div class="row tak-margin-top-13">
                                     <div class="col-lg-12 centered">
@@ -1323,3 +1326,36 @@
 ========================
 -->
 
+<script>
+
+document.getElementById('rsvp-form').onsubmit = function (e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        console.log(data)
+
+        function alert_markup(alert_type, msg) {
+            return '<div class="alert alert-' + alert_type + '" role="alert">' + msg + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span>&times;</span></button></div>';
+        }
+        $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
+        console.log(document.getElementById('invite_code').value)
+        if (document.getElementById('invite_code').value !== '271117') {
+                console.log("Invite code error")
+                $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
+        } else {
+            $.post('https://script.google.com/macros/s/AKfycbxniIVjnl2ROWXPcLQF2bk-5bs3a2NBJyji2CQegD__SejQMsevhFiuCgmK6srAlaen/exec', data)
+                .done(function (data) {
+                    console.log(data);
+                    if (data.result === "error") {
+                        $('#alert-wrapper').html(alert_markup('danger', data.message));
+                    } else {
+                        $('#alert-wrapper').html('');
+                        $('#rsvp-modal').modal('show');
+                    }
+                })
+                .fail(function (data) {
+                    console.log(data);
+                    $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
+                });
+        }
+    };
+</script>
