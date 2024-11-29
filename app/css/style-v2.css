@@ -2702,6 +2702,107 @@ ul.countdown-timer li span.time-name {
 }
 /* -- */
 
+.custom-popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+    width: 100%;
+    height: 100%;
+}
+
+.custom-popup-content {
+    background-color: #fff;
+    border-radius: 8px;
+    width: 400px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; /* Center the content */
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.add-to-calendar-button {
+    width: auto; 
+    display: block; 
+    margin: 0 auto; /* Center horizontally */
+}
+.custom-popup-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 24px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.custom-popup-close:hover {
+    color: #000;
+}
+
+add-to-calendar-button {
+    background-color: #74c2bb !important;  /* Custom background */
+    color: #fff !important;                /* White text */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    margin: 20px auto 0;
+}
+
+/* Remove blue outline and box-shadow */
+add-to-calendar-button:focus, 
+add-to-calendar-button:active {
+    outline: none !important;              /* No default focus outline */
+    box-shadow: none !important;           /* No box shadow */
+}
+
+/* Optional hover effect */
+add-to-calendar-button:hover {
+    background-color: #5da9a2 !important;  /* Darker shade on hover */
+}
+
+
+/* Ensure Calendar links are visible */
+#add-to-cal a {
+    display: block;
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+#add-to-cal a:hover {
+    background-color: #ff4949;
+}
+
 #breakout p.sub-lead {
 	margin-top: 25px;
 	margin-bottom: 30px;

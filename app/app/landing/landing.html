@@ -1138,7 +1138,30 @@
 
     </section>
 
-    <section id="rsvp-form-section" class="gray-bg centered">
+    <section id="rsvp-form-section" class="gray-bg centered" aria-hidden="false">
+        <div id="custom-popup" class="custom-popup">
+            <div class="custom-popup-content">
+                <span class="custom-popup-close" id="popup-close">&times;</span>
+                <h3>Thank You!</h3>
+                <p>We are excited to have you with us on our big day. Don't forget to add this event to your calendar!</p>
+                
+                <!-- Centered and styled Add-to-Calendar button -->
+                <add-to-calendar-button class="submit-button"
+                                        name="Sophia and Richard's Wedding"
+                                        options="'Apple','Google'"
+                                        location="World Wide Web"
+                                        startDate="2025-09-20"
+                                        endDate="2025-09-20"
+                                        startTime="16:00"
+                                        endTime="23:30"
+                                        timeZone="America/Los_Angeles">
+                </add-to-calendar-button>
+        
+                <div id="add-to-cal"></div>
+            </div>
+        </div>
+             
+        
             <div class="container" style="background-color: #515459;">
                 <div class="row">
                     <div class="contact-content col-lg-10 col-lg-offset-1 centered">
@@ -1185,7 +1208,9 @@
                                 </div>
                                 <div class="row tak-margin-top-13">
                                     <div class="col-lg-12 centered">
-                                        <button type="submit" class="submit-button">Yes, that's me!</button>
+                                        <!-- RSVP Button -->
+                                        <button type="submit" class="submit-button">RSVP</button>
+                                    
                                     </div>
                                 </div>
                             </form> <!--/ .contact-form -->
@@ -1193,8 +1218,11 @@
                         <!--/ END RSVP Form -->
                     </div> <!--/ .contact-content -->
                 </div> <!--/ .row -->
-    </section>
 
+        
+    </section>
+    
+ 
     <!--
     =================================
     ==/ END CUSTOMER STORY SECTION ==
@@ -1326,36 +1354,55 @@
 ========================
 -->
 
-<script>
+<script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@2" async defer></script>
 
-document.getElementById('rsvp-form').onsubmit = function (e) {
+<script>
+// Handle form submission
+$(document).ready(function () {
+    document.getElementById('rsvp-form').onsubmit = function (e) {
         e.preventDefault();
         var data = $(this).serialize();
-        console.log(data)
 
         function alert_markup(alert_type, msg) {
-            return '<div class="alert alert-' + alert_type + '" role="alert">' + msg + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span>&times;</span></button></div>';
+            return '<div class="alert alert-' + alert_type + '" role="alert">' + msg +
+                '<button type="button" class="close" aria-label="Close">' +
+                '<span>&times;</span></button></div>';
         }
+
         $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
-        console.log(document.getElementById('invite_code').value)
+        
         if (document.getElementById('invite_code').value !== '271117') {
-                console.log("Invite code error")
-                $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
+            $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
         } else {
             $.post('https://script.google.com/macros/s/AKfycbxniIVjnl2ROWXPcLQF2bk-5bs3a2NBJyji2CQegD__SejQMsevhFiuCgmK6srAlaen/exec', data)
                 .done(function (data) {
-                    console.log(data);
                     if (data.result === "error") {
                         $('#alert-wrapper').html(alert_markup('danger', data.message));
                     } else {
                         $('#alert-wrapper').html('');
-                        $('#rsvp-modal').modal('show');
+                        showCustomPopup();
+                        $('#rsvp-form')[0].reset();
                     }
                 })
-                .fail(function (data) {
-                    console.log(data);
-                    $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
+                .fail(function () {
+                    $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server.'));
                 });
         }
     };
+
+    function showCustomPopup() {
+        document.getElementById('custom-popup').style.display = 'block';
+    }
+
+    document.getElementById('popup-close').onclick = function () {
+        document.getElementById('custom-popup').style.display = 'none';
+    };
+
+    window.onclick = function (event) {
+        if (event.target === document.getElementById('custom-popup')) {
+            document.getElementById('custom-popup').style.display = 'none';
+        }
+    };
+});
+
 </script>
