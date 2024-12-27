@@ -81,12 +81,12 @@
 
         function openEdytaGallery(idx) {
             var images =  [
-                {id: 0, image: 'images/thumbnail-strip/0003-lrg.jpg'},
-                {id: 1, image: 'images/thumbnail-strip/0020-lrg.jpg'},
-                {id: 2, image: 'images/thumbnail-strip/0039-lrg.jpg'},
-                {id: 3, image: 'images/thumbnail-strip/0051-lrg.jpg'},
-                {id: 4, image: 'images/thumbnail-strip/0116-lrg.jpg'},
-                {id: 5, image: 'images/thumbnail-strip/0147-lrg.jpg'}
+                {id: 0, image: 'images/thumbnail-strip/1-lrg.jpg'},
+                {id: 1, image: 'images/thumbnail-strip/2-lrg.jpg'},
+                {id: 2, image: 'images/thumbnail-strip/3-lrg.jpg'},
+                {id: 3, image: 'images/thumbnail-strip/4-lrg.jpg'},
+                {id: 4, image: 'images/thumbnail-strip/5-lrg.jpg'},
+                {id: 5, image: 'images/thumbnail-strip/6-lrg.jpg'}
             ];
             openGalleryModal(idx, images);
         }

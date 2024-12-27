@@ -2847,6 +2847,18 @@ add-to-calendar-button:hover {
     justify-content: center;
 }
 
+.image-container {
+    display: flex;
+    flex-direction: column; /* Stack images vertically */
+    align-items: center; /* Center-align images horizontally */
+    gap: 10px; /* Add spacing between images */
+  }
+
+  .stacked-image {
+    max-width: 100%; /* Ensure images scale responsibly */
+    height: auto; /* Maintain aspect ratio */
+  }
+
 .photo-container {
     position: relative;
     width: 50%;

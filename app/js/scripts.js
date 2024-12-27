@@ -40,12 +40,12 @@ $(document).ready(function () {
         console.log("I AM IN FUNCTION 2")
         $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
         console.log("I AM IN FUNCTION 3")
-        if (MD5($('#invite_code').val()) !== 'b0e53b10c1f55ede516b240036b88f40'
-            && MD5($('#invite_code').val()) !== '2ac7f43695eb0479d5846bb38eec59cc') {
+        if (MD5($('#invite_code').val()) !== 'a73faabe9c920371836cf55b4e2bfa06'
+            && MD5($('#invite_code').val()) !== 'a73faabe9c920371836cf55b4e2bfa06') {
             $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
         } else {
             console.log("I AM IN FUNCTION 4")
-            $.post('https://script.google.com/macros/s/AKfycbxniIVjnl2ROWXPcLQF2bk-5bs3a2NBJyji2CQegD__SejQMsevhFiuCgmK6srAlaen/exec', data)
+            $.post('https://script.google.com/macros/s/AKfycbwbh3p6ez3hBt2goQyKMziHXX_j1wVePGPCChoXeYcAOPAWrQ8zo-5bo0FrUZK1Qctc/exec', data)
                 .done(function (data) {
                     console.log(data);
                     if (data.result === "error") {
